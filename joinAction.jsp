@@ -17,9 +17,25 @@
 </head>
 <body>
 <%
+
+		String userID = null;
+		if(session.getAttribute("userID")!=null){
+			userID=(String) session.getAttribute("userID");
+		}
+		if(userID != null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('이미 로그인이 되어 있습니다.')");
+			script.println("location.href='main.jsp'"); 
+			script.println("<script>");
+		} //로그인이 된 사람은 다시 로그인이 되지 못하도록 한다.
+
         if(user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null ||
-                        user.getUserGender() == null || user.getUserEmail() == null){
+                        user.getUserGender() == null || user.getUserEmail()==null){
+        	
             PrintWriter script = response.getWriter();
+            System.out.println(user.getUserID()+"pass: "+user.getUserPassword()+"name:"+user.getUserName()+"gender:"+
+           		user.getUserGender()+"email:"+user.getUserEmail());
             script.println("<script>");
             script.println("alert('입력이 안된 사항이 있습니다.')");
             script.println("history.back()");
@@ -35,10 +51,12 @@
                 script.println("</script>");
             }
 		 else{
+			//로그인에 생성했을때 세션을 부여한다
+			session.setAttribute("userID",user.getUserID());
              PrintWriter script = response.getWriter();
              script.println("<script>");
              script.println("location.href= 'main.jsp'");
-             script.println("</script>");
+             script.println("</script>"); 
              }
      }
 

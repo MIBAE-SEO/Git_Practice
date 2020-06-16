@@ -4,11 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP 게시판 웹 사이트 </title>
+<title>로그아웃 페이지  </title>
 </head>
 <body>
-	<script> 
-	location.href='main.jsp';
+<%
+       session.invalidate(); //할당해제 
+
+%>
+
+	<script>
+		location.href="main.jsp";
 	</script>
 </body>
 </html>
