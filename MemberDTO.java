@@ -1,43 +1,80 @@
-package memo;
+package kr.co.sm.member.dto;
 
 public class MemberDTO {
 
+	private int rr   ;
+	private String memid   ;
+	private int  memseq    ;
+	private String passwd  ;
+	private String memname ;
+	private String memtel  ;
+	private String membirth;
+	private String regdate ;
+	private String mememail;
+	private char memgender ;
 	
-	 private String nameTxt;
-	 private String birthTxt;
-	 private String phoneTxt;
-	 private String emailTxt;
-	 
-	public String getNameTxt() {
-		return nameTxt;
+	
+	public int getRr() {
+		return rr;
 	}
-	public void setNameTxt(String nameTxt) {
-		this.nameTxt = nameTxt;
+	public void setRr(int rr) {
+		this.rr = rr;
 	}
-	public String getBirthTxt() {
-		return birthTxt;
+	public String getMemid() {
+		return memid;
 	}
-	public void setBirthTxt(String birthTxt) {
-		this.birthTxt = birthTxt;
+	public void setMemid(String memid) {
+		this.memid = memid;
 	}
-	public String getPhoneTxt() {
-		return phoneTxt;
+	public int getMemseq() {
+		return memseq;
 	}
-	public void setPhoneTxt(String phoneTxt) {
-		this.phoneTxt = phoneTxt;
+	public void setMemseq(int memseq) {
+		this.memseq = memseq;
 	}
-	public String getEmailTxt() {
-		return emailTxt;
+	public String getMemname() {
+		return memname;
 	}
-	public void setEmailTxt(String emailTxt) {
-		this.emailTxt = emailTxt;
+	public void setMemname(String memname) {
+		this.memname = memname;
 	}
-	 
-	@Override
-    public String toString() {
-        return "MemberDTO [nameTxt=" + nameTxt + ", birthTxt=" + birthTxt + ", phoneTxt=" + phoneTxt
-                + ", emailTxt=" + emailTxt + "]";
-    }
+	
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+	public String getMemtel() {
+		return memtel;
+	}
+	public void setMemtel(String memtel) {
+		this.memtel = memtel;
+	}
+	public String getMembirth() {
+		return membirth;
+	}
+	public void setMembirth(String membirth) {
+		this.membirth = membirth;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public String getMememail() {
+		return mememail;
+	}
+	public void setMememail(String mememail) {
+		this.mememail = mememail;
+	}
+	public char getMemgender() {
+		return memgender;
+	}
+	public void setMemgender(char memgender) {
+		this.memgender = memgender;
+	}
+	
+	
 }
-	 
-	 
