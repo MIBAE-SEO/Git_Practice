@@ -21,8 +21,6 @@
 	  </when>
 	 </choose>
    </select>
-   <insert id="insertOrder" parameterType="odto">
-	   
-   </insert>
+	   <insert parameterType="odto" id="insertOrder"> </insert>
    
 </mapper>
