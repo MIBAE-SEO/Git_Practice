@@ -3,7 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
 <body>
-
+<% request.setCharacterEncoding("UTF-8");
+%>
 
 	<center>
 		<h2> 게시글 쓰기 </h2>
@@ -32,7 +33,7 @@
 			
 			<tr height="40">
 				<td align ="center" width="150">글내용</td>
-				<td width="450"><textarea rows="10" col="60" name="content"></textarea></td>
+				<td width="450"><textarea rows="10" cols="60" name="content"></textarea></td>
 			</tr>
 			
 			<tr height="40">

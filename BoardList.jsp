@@ -7,7 +7,8 @@
 <html>
 
 <body>
-
+<% request.setCharacterEncoding("UTF-8");
+%>
 	<%
 		//전체게시글의 내용을 jsp쪽으로 가져와야한다.
 		//게시글의 개수를 알 수 없기때문에 Vector 타입으로 가져와야한다.
@@ -39,8 +40,16 @@
 		
 			<tr height="40">
 				<td width="50" align="center"><%=i+1 %></td>
-				<td width="320" align="center">
-				<a href="BoardInfo.jsp?num=<%=bean.getNum()%>"><%=bean.getSubject() %></a></td>
+				<td width="320" align="left">
+				<a href="BoardInfo.jsp?num=<%=bean.getNum()%>" style="text-decoration:none">
+		<%
+			if(bean.getRe_step() > 1){
+				for(int j=0; j < (bean.getRe_step()-1)*5; j++){
+		%>&nbsp;			
+		<% 		}
+			}
+		%>		
+				<%=bean.getSubject() %></a></td>
 				<td width="100" align="center"><%=bean.getWriter()%></td>
 				<td width="150" align="center"><%=bean.getReg_date()%></td>
 				<td width="80" align="center"><%=bean.getReadcount()%></td>

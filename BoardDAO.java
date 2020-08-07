@@ -122,14 +122,229 @@ public class BoardDAO {
 				
 				//패키징 한 데이터를 Vector(박스)에 저장
 				v.add(bean);
-				con.close();
 			}
+			con.close();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 		return v;
+	}
+	
+	
+	
+	//BoardInfo에서 하나의 게시글을 리턴하는 메소드 작성 
+	
+	public BoardBean getOneBoard(int num) {
+		
+		//리턴타입 선언
+		BoardBean bean = new BoardBean();
+		getCon();
+		
+		
+		try {
+			
+			//조회수 증가 쿼리
+			String readsql = "update board set readcount = readcount+1 where num=?";
+			pstmt = con.prepareStatement(readsql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+			
+			//쿼리준비
+			String sql = "select * from board where num = ?";
+			
+			//쿼리객체 선언
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			//쿼리 실행 후 결과 리턴
+			rs = pstmt.executeQuery();
+			
+			//레코드 하나만 넘어오기때문에 if문 
+			if(rs.next()) {
+				
+				//bean에 데이터를 하나씩 매핑시킨다.
+				bean.setNum(rs.getInt(1));
+				bean.setWriter(rs.getString(2));
+				bean.setEmail(rs.getString(3));
+				bean.setSubject(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setReg_date(rs.getDate(6).toString());
+				bean.setRef(rs.getInt(7));
+				bean.setRe_step(rs.getInt(8));
+				bean.setRe_level(rs.getInt(9));
+				bean.setReadcount(rs.getInt(10));
+				bean.setContent(rs.getString(11));
+				
+			}
+				con.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return bean;
+	}
+
+	
+	//답변글이 저장되는 메소드 
+	
+	public void reWriteBoard(BoardBean bean) {
+		
+		//부모글의 ref, re_step, re_level을 알아야 +1 할 수 있음 
+	
+		int ref = bean.getRef();
+		int re_step = bean.getRe_step();
+		int re_level = bean.getRe_level();
+		
+		
+		getCon();
+		
+		try {
+			///////////////핵심코드///////////////
+			//부모글보다 큰 re_level의 값을 1씩 증가 
+			
+			String levelsql ="update board set re_level=re_level+1 where ref=? and re_level > ? ";
+			
+			pstmt = con.prepareStatement(levelsql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, re_level);
+			
+			pstmt.executeUpdate();
+			
+			//답변글 데이터 저장
+			String sql = "insert into board values(board_seq.NEXTVAL,?,?,?,?,sysdate,?,?,?,0,?)";
+			
+			pstmt= con.prepareStatement(sql);
+			
+			// ? 에 값을 저장.
+			pstmt.setString(1, bean.getWriter());
+			pstmt.setString(2, bean.getEmail());
+			pstmt.setString(3, bean.getSubject());
+			pstmt.setString(4, bean.getPassword());
+			pstmt.setInt(5, ref);
+			pstmt.setInt(6, re_step+1);
+			pstmt.setInt(7, re_level+1);
+			pstmt.setString(8, bean.getContent());
+			
+			pstmt.executeUpdate();
+			
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	
+}
+
+	//BoardUpdate용 하나의 게시물 리턴 
+	
+	public BoardBean getOneUpdateBoard(int num) {
+		
+		//리턴타입 선언
+		BoardBean bean = new BoardBean();
+		getCon();
+		
+		
+		try {
+			
+			
+			//쿼리준비
+			String sql = "select * from board where num = ?";
+			
+			//쿼리객체 선언
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			//쿼리 실행 후 결과 리턴
+			rs = pstmt.executeQuery();
+			
+			//레코드 하나만 넘어오기때문에 if문 
+			if(rs.next()) {
+				
+				//bean에 데이터를 하나씩 매핑시킨다.
+				bean.setNum(rs.getInt(1));
+				bean.setWriter(rs.getString(2));
+				bean.setEmail(rs.getString(3));
+				bean.setSubject(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setReg_date(rs.getDate(6).toString());
+				bean.setRef(rs.getInt(7));
+				bean.setRe_step(rs.getInt(8));
+				bean.setRe_level(rs.getInt(9));
+				bean.setReadcount(rs.getInt(10));
+				bean.setContent(rs.getString(11));
+				
+			}
+				con.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return bean;
+	}
+	
+	
+	//update와 delete시 필요한 패스워드 값을 리턴해주는 메소드
+	
+	public String getPass(int num) {
+		//리턴할 변수객체 선언
+		getCon();
+		String pass = "";
+		
+		
+		try {
+			String sql = "select password from board where num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			//패스워드 값을 저장한다
+			if(rs.next()) {
+				pass = rs.getString(1); 
+			}
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+			return pass;
+		
+	}
+	
+	
+	
+	//하나의 게시글을 수정하는 메소드 
+	public void updateBoard(BoardBean bean) {
+		
+		getCon();
+		
+		try {
+			
+			String sql = "update board set subject=? , content=? where num=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bean.getSubject());
+			pstmt.setString(2, bean.getContent());
+			pstmt.setInt(3, bean.getNum());
+			
+			pstmt.executeUpdate();
+			
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 }
