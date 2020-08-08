@@ -33,8 +33,9 @@
 %>		
 	 <script type="text/javascript">
 		alert("패스워드가 일치 하지 않습니다. 다시 확인해 주세요");
-		histroy.go(-1);	
+		history.go(-1);
 	</script>
+	 
 <% 	
 	}		
 %>

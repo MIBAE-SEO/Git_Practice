@@ -88,7 +88,7 @@ public class BoardDAO {
 	
 	
 	//모든 게시글을 리턴해주는 메소드 적용
-	public Vector<BoardBean> getAllBoard(){
+	public Vector<BoardBean> getAllBoard(int start, int end){
 		
 		//리턴객체 선언
 		Vector<BoardBean> v = new Vector<>();
@@ -97,10 +97,14 @@ public class BoardDAO {
 		try {
 			
 			//쿼리준비 (re_step과 re_level을 조정(최신글)하여야함.
-			String sql = "select * from board order by ref desc, re_step asc ";
+			String sql = "select * from (select A.* , Rownum Rnum from "
+					+ "(select * from board order by ref desc , re_step asc) A) "
+					+ "where Rnum >= ? and Rnum <= ? ";
 			
 			//쿼리실행객체 선언
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			//쿼리 실행 후 결과 저장
 			rs = pstmt.executeQuery();
 			//데이터 개수 몇개인지 모르기에 반복문 이용하여 데이터 추출
@@ -345,6 +349,58 @@ public class BoardDAO {
 		}
 		
 		
+	}
+	
+	
+	//하나의 게시글을 삭제하는 메소드
+	
+	public void deleteBoard(int num) {
+		
+		getCon();
+		
+		try {
+			String sql = "delete from board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeQuery();
+			
+			con.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	//전체 글을 리턴하는 메소드
+	
+	public int getAllcount() {
+		
+		getCon();
+		
+		//게시글 전체수를 저장하는 변수
+		int count = 0; 
+		
+		try {
+			
+			String sql = "select count(*) from board";
+			
+			//쿼리 실행할 객체 선언
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+				count = rs.getInt(1); //전체 게시글 수
+				
+			}
+			con.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 
+		return count;
 	}
 	
 }

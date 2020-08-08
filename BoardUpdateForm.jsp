@@ -46,7 +46,7 @@
 		
 		<tr height="40">
 			<td colspan="4" align="center">
-			<input type="hidden" name="number" value="<%=bean.getNum() %>" style="text-decoration:none">
+			<input type="hidden" name="num" value="<%=bean.getNum() %>" style="text-decoration:none">
 			<input type="submit" value="글수정">&nbsp;&nbsp;
 			<input type="button" onclick="location.href='BoardList.jsp'" value="전체글보기"></td>
 		</tr>
