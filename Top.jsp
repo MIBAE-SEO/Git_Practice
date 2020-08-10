@@ -23,8 +23,8 @@
 		 </td>
 		 <tr height="50">
 		 <td align="center" width="200" bgcolor="red">
-		 	<font color="white" size="4"> 예약하기 
-		 	<a href="CarReserveMain.jsp" style="text-decoration:none"></a></font>
+		 	<font color="white" size="4"> 
+		 	<a href="RentCarMain.jsp?center=CarReserveMain.jsp" style="text-decoration:none">예약하기 </a></font>
 		 </td>
 		 <td align="center" width="200" bgcolor="red">
 		 	<font color="white" size="4"> 예약확인 
