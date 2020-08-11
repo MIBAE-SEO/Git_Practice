@@ -11,6 +11,7 @@
 	if(id ==null){
 		id="GEUST";
 	}
+	
 
 %>
 	<table width="1000" >
@@ -19,7 +20,13 @@
 		 	<img alt="" src="img/logo.png" height="65">
 		 </td>
 		 <td align="center" width="200" >
-		 	<%=id %>님 반갑습니다. 
+		 	<%=id %>님 
+		 	<%
+		 		if(id.equals("GEUST")){ %>
+		 		<button onclick="location.href='RentCarMain.jsp?center=MemberLogin.jsp'">로그인</button>
+		 	<% 
+		 	}%>
+		 		
 		 </td>
 		 <tr height="50">
 		 <td align="center" width="200" bgcolor="red">

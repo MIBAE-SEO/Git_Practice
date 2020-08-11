@@ -23,7 +23,7 @@
 	%>
 
 <center>
-	<form action="RentCarMain.jsp?center=CarOptionSelect.jsp">
+	<form action="RentCarMain.jsp?center=CarOptionSelect.jsp" method="post">
 	<table width="1000">
 	<tr height="100">
 	<td align="center" colspan="3">
@@ -38,7 +38,7 @@
 	<tr>
 		<td width="250" align="center">차량수량</td>
 		<td width="250" align="center">
-		<select name = "carqty">
+		<select name = "qty">
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -60,6 +60,7 @@
 	<tr>
 		<td align="center" colspan="2">
 		<input type="hidden" name="no" value="<%=bean.getNo() %>">
+		<input type="hidden" name="img" value="<%=bean.getImg() %>">
  		<input type="submit" value="옵션 선택 후 렌트하기">
  		</td>
 	</tr>

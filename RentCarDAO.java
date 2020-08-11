@@ -186,4 +186,58 @@ public class RentCarDAO {
 		return bean;
 	}
 	
+	
+	//회원정보가 있는지를 비교 (기존의 Member2테이블 이용)
+	public int getMember(String id, String pass) {
+		
+		int result =0; //0이면 회원 없음
+		getCon();
+		
+		
+		try {
+			String sql = "select count(*) from member2 where id=? and password1=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pass); 
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=rs.getInt(1); //0또는 1이 저장됨
+			}
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+
+	//하나의 예약정보를 저장하는 메소드
+	public void setReserveCar(CarReserveBean bean) {
+		getCon();
+		
+		try {
+			String sql = "insert into carreserve values(reserve_seq.NEXTVAL,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, bean.getNo());
+			pstmt.setString(2, bean.getId());
+			pstmt.setInt(3, bean.getQty());
+			pstmt.setInt(4, bean.getDday());
+			pstmt.setString(5, bean.getRday());
+			pstmt.setInt(6, bean.getUsein());
+			pstmt.setInt(7, bean.getUsewifi());
+			pstmt.setInt(8, bean.getUsenavi());
+			pstmt.setInt(9, bean.getUseseat());
+			
+			pstmt.executeUpdate();
+			
+			con.close();
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
