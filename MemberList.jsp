@@ -1,50 +1,36 @@
-<%@page import="model.MemberBean" %>
-<%@page import="model.MemberDAO" %>
-<%@page import="java.util.Vector" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
 <body>
 
-	<!-- 1. 데이터 베이스에서 모든 회원 정보 가져오기 -->
-	
-	
-	<%
-		MemberDAO mdao = new MemberDAO();
-		//회원들의 정보가 얼마나 저장되어 있는지 모르기에 가변길이 Vector를 이용하여 작업.
-		//클래스의 최상위는 오브젝트. 벡터는 오브젝트를 담음. 
-		//이렇게 지정하지 않으면 object타입으로 불러와져서 한 번 더 캐스팅해야하는 수고가 있음. 
-		Vector<MemberBean> vec = mdao.allSelectMember();
-		
-	%>
-	
-	<!-- 2. table태그를 이용하여 화면에 회원정보 출력  -->
 	<center>
-	<h2> 모든 회원 보기 </h2>
-	<table width="800" border="1">
-		<tr height="50">
-		<td align="center" width="150"> 아이디</td>
-		<td align="center" width="250"> 이메일</td>
-		<td align="center" width="200"> 전화번호</td>
-		<td align="center" width="200"> 취미</td>
+	<h2> 전체 회원 보기</h2>
+	<table width="800" border="1" bordercolor="gray">
+	<tr height="40">
+		<td align="center" width="50">아이디</td>
+		<td align="center" width="200">이메일</td>
+		<td align="center" width="150">전화번호</td>
+		<td align="center" width="150">취미</td>
+		<td align="center" width="150">직업</td>
+		<td align="center" width="100">나이</td>
+	</tr>
+	<c:forEach var="bean" items="${v }">
+		<tr height="40">
+		<td align="center" width="50">${bean.id }</td>
+		<td align="center" width="200"><a href="#">${bean.email }</a></td>
+		<td align="center" width="150">${bean.tel }</td>
+		<td align="center" width="150">${bean.hobby }</td>
+		<td align="center" width="150">${bean.job }</td>
+		<td align="center" width="100">${bean.age }</td>
 	</tr>
 	
-	<%
-		for(int i=0; i< vec.size(); i++){
-			MemberBean bean = vec.get(i); //벡터에 담긴 빈클래스를 하나씩 추출	
+	</c:forEach> 	
 		
-	%>
-	<tr height="50">
-		<td align="center" width="150">
-		<a href="MemberInfo.jsp?id=<%=bean.getId()%>"> <%=bean.getId() %></a></td>
-		<td align="center" width="250"> <%=bean.getEmail() %></td>
-		<td align="center" width="200"> <%=bean.getTel() %></td>
-		<td align="center" width="200"> <%=bean.getHobby() %></td>
-	</tr>
-	<%} %>
-	</table>
 	
+	</table>
 	</center>
+
 </body>
 </html>
