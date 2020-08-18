@@ -1,37 +1,28 @@
 <%@page import="model.BoardBean"%>
 <%@page import="model.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
 <body>
 
-
 	<center>
 		<h2> 게시글 수정</h2>
 
-	<%
-	//해당 게시글번호를 통하여 게시글을 수정한다.
-	int num = Integer.parseInt(request.getParameter("num").trim());
 	
-	//하나의 게시글에 대한 일부를 리턴 
-	BoardDAO bdao = new BoardDAO();
-	BoardBean bean = bdao.getOneUpdateBoard(num);
-	
-	%>
-	
-	<form action="BoardUpdateProc.jsp" method="post">
-	<table width="100" border="1" bgcolor="skyblue">
+	<form action="BoardUpdateProcCon.do" method="post">
+	<table width="100" border="1" >
 		<tr height="40">
 			<td width="120" align="center">작성자</td>
-			<td width="180" align="center"><%=bean.getWriter()%></td>
+			<td width="180" align="center">${bean.writer }</td>
 			<td width="120" align="center">작성일</td>
-			<td width="180" align="center"><%=bean.getReg_date() %></td>
+			<td width="180" align="center">${bean.reg_date }</td>
 		</tr>
 		
 		<tr height="40">
 			<td width="120" align="center">제목</td>
-			<td width="480" colspan="3"> &nbsp; <input type="text" name="subject" value="<%=bean.getSubject() %>" size="60"></td>
+			<td width="480" colspan="3"> &nbsp; <input type="text" name="subject" value="${bean.subject }" size="60"></td>
 		</tr>
 		
 		<tr height="40">
@@ -41,18 +32,20 @@
 		
 		<tr height="40">
 			<td width="120" align="center">글내용</td>
-			<td width="480" colspan="3"><textarea rows="10" cols="60" name="content" align="left"><%=bean.getContent() %></textarea>
+			<td width="480" colspan="3"><textarea rows="10" cols="60" name="content" align="left">${bean.content }</textarea>
 		</tr>
 		
 		<tr height="40">
 			<td colspan="4" align="center">
-			<input type="hidden" name="num" value="<%=bean.getNum() %>" style="text-decoration:none">
+			<input type="hidden" name="num" value="${bean.num }" style="text-decoration:none">
+			<input type="hidden" name="pass" value="${bean.password }">
 			<input type="submit" value="글수정">&nbsp;&nbsp;
-			<input type="button" onclick="location.href='BoardList.jsp'" value="전체글보기"></td>
+			<input type="button" onclick="location.href='BoardListCon.do'" value="전체글보기"></td>
 		</tr>
 	</table>
 	</form>
 	</center>
+
 
 
 </body>

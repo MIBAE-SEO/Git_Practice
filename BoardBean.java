@@ -12,6 +12,8 @@ public class BoardBean {
 	private int ref;
 	private int re_step;
 	private int re_level;
+	private int readcount;
+	private String content;
 	
 	
 	public int getNum() {
@@ -80,7 +82,6 @@ public class BoardBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	private int readcount;
-	private String content;
+	
 	
 }
