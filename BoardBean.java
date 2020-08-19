@@ -22,6 +22,8 @@ public class BoardBean {
 	public void setNum(int num) {
 		this.num = num;
 	}
+
+	
 	public String getWriter() {
 		return writer;
 	}
@@ -82,6 +84,6 @@ public class BoardBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	
 }

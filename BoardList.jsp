@@ -1,102 +1,131 @@
+<%@page import="java.util.Vector"%>
+<%@page import="model.BoardDAO"%>
+<%@page import="model.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
+<head>
+<title>BoardList</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@1,300&family=M+PLUS+1p:wght@300&family=Noto+Serif+JP:wght@200&family=Poiret+One&display=swap" rel="stylesheet">
+<style>
+body{
+		background-image: url("././images/writeform.jpg");
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-attachment:scroll;
+	}
+	
+h1{
+	font-family: 'Noto Serif JP', serif;
+	font-size: 70px;
+	
+}
+
+h2{
+	font-family: 'Josefin Slab', serif;
+	font-size: 20px;
+}
+
+h3{
+
+	font-family: 'Poiret One', cursive;
+	font-size: 30px;
+	padding : 10px;
+}
+
+
+table.type01 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: center;
+    line-height: 1.5;
+    margin: 20px 10px;
+}
+
+
+table.type01 td{
+	font-family: 'Noto Serif JP', serif;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+
+hr.one{
+	width:1000px;
+	color:black;
+	
+}
+
+
+.btn{
+ 	font-family: 'Noto Serif JP', serif;
+ 	font-size:20px;
+	background-color:transparent;
+ 	border:1px;
+ 	padding:10px;
+}
+
+.b .btn{
+	margin: right;
+}
+</style>
+</head>
 <body>
-<c:if test="${msg ==1 }">
-	<script>
-		alert("게시글 수정 비밀번호가 맞지 않습니다.");
-	</script>
-</c:if>
+<center>
 
-<c:if test="${msg ==2 }">
-	<script>
-		alert("게시글 삭제 비밀번호가 맞지 않습니다.");
-	</script>
-</c:if>
-	<center>
-<h2>전체 게시글 보기</h2>
-	
+<%
 
-	<table width="700" border="1" bgcolor="skyblue">
-			<tr height="40">
-			<td align="right" colspan="5">
-			<input type="button" value="글쓰기" onclick="location.href='BoardWriteForm.jsp'">
-			</td>
-			</tr>
-			<tr height="40">
-				<td width="50" align="center">번호</td>
-				<td width="320" align="center">제목</td>
-				<td width="100" align="center">작성자</td>
-				<td width="150" align="center">작성일</td>
-				<td width="80" align="center">조회수</td>
-			</tr>	
+
+BoardDAO bdao = new BoardDAO();
+Vector<BoardBean> vec = bdao.getAllBoard();
+
+%>
+
+​
+		
+		<h1> Customer Service </h1>
+		<h2> Hello. What can we help you with? </h2>
+		<h3>  - B o a r d -</h3>	
+		
+			<table width="1000">
+				<tr>
+				<td align="right">
+				<input class="btn" 
+					   type="button" 
+					   value="write" 
+				       onclick="location.href='BoardWriteForm.jsp'"/></td>
+                </tr>
+			</table>
 			
-			
-		<c:set var ="number" value="${number }"/>
+			<hr class="one">
+			<table class="type01" width="1000" >
+			<tr>
+                <td width="100" align="center">No</td>
+                <td width="450" align="center">Title</td>
+                <td width="250" align="center">Writer</td>
+                <td width="150" align="center">Date</td>
+                <td width="100" align="center">View</td>
+             </tr>
+
+ <%
+for(int i = 0; i < vec.size(); i++){
+BoardBean bean = vec.get(i); //벡터에 저장되어있는 bean클래스를 하나씩 추출한다.
+
+%> 	
 		
-		<c:forEach var="bean" items="${v}">
-		
-			<tr height="40">
-				<td width="50" align="left">${number }</td>
-				<td width="320" align="left">
-					<c:if test="${bean.re_step > 1 }">
-						<c:forEach var="j" begin="1" end="${(bean.re_step-1)*5 }">
-							&nbsp;
-						</c:forEach>
-					</c:if>
-					<a href="BoardInfoCon.do?num=${bean.num }">${bean.subject }</a>
-					</td>
-				<td width="100" align="left">${bean.writer}</td>
-				<td width="150" align="left">${bean.reg_date }</td>
-				<td width="80" align="left">${bean.readcount}</td>
-			</tr>	
-			
-		<!--number값을 하나씩 줄임 -->
-		<c:set var ="number" value="${number-1 }"/>	
-		
-		
-		</c:forEach>
+<tr height="40">
+<td width="100" align="center"><%=i+1 %></td>
+<td width="450" align="center">
+<a href="BoardInfo.jsp?num=<%=bean.getNum()%>"><%=bean.getSubject() %></a></td>
+<td width="250" align="center"><%=bean.getWriter()%></td>
+<td width="150" align="center"><%=bean.getReg_date()%></td>
+<td width="100" align="center"><%=bean.getReadcount()%></td>
+</tr> 
+<% } %> 
+		        
 	</table>
-	
-	<p>
-	<!-- 페이지 카운터링 소스를 작성 -->
-	<c:if test="${count>0 }">
-	
-	<c:set var="pageCount" value="${count / pageSize +(count%pageSize == 0? 0 : 1) }"/>
-	<c:set var="startPage" value="${1 }"/>
-		<c:if test="${currentPage % 10 == 0 }">
-			<!-- 결과를 정수형으로 리턴받아야 하기에 fmt 태그 사용 -->
-			<fmt:parseNumber var="result" value="${currentPage / 10 }" integerOnly="true"/>
-			<c:set var="stratPage" value="${(result-1)*10+1 }"/>
-		</c:if>
-		<!-- 화면에 보여질 페이지 처리 숫자를 표현  -->	
-	<c:set var="pageBlock" value="${10 }"/>
-	<c:set var="endPage" value="${startPage+pageBlock-1 }"/>
-	<c:if test="${endPage > pageCount }">
-		<c:set var="endPage" value="${pageCount }"/>
-	</c:if>
-	
-	<!--이전 링크를 걸것인지 파악  -->
-	<c:if test="${startPage>10 }">
-		<a href='BaordListCon.do?PageNum=${startPage-10 }'>[이전]</a>
-	</c:if>
-	
-	<!-- 페이징처리 -->
-	<c:forEach var="i" begin="${startPage }" end="${endPage }">
-		<a href='BaordListCon.do?PageNum=${i }' style="text-decoration: none">[${i }]</a>
-	</c:forEach>
-	
-	<!-- 다음 -->
-	<c:if test="${ endPage < pageCount}">
-		<a href='BaordListCon.do?PageNum=${startPage+10 }'>[다음]</a>
-	</c:if>
-	</c:if>
-	
-	</center>		
-			
-
+ 
+	</center>
 </body>
 </html>
