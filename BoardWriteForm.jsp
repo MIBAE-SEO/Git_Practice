@@ -28,8 +28,6 @@ table.table01 td{
 	font-size: 20px;
 	text-align:center;
 	}
-	
-
 
 
 .btn{
@@ -58,6 +56,7 @@ textarea
 	border-bottom: teal 1px solid;
 	border-left: teal 1px solid;
 	border-right: teal 1px solid;
+	
 	border-top: teal 1px solid;
 	font-size: 13pt;
 	text-decoration: none;
@@ -88,7 +87,7 @@ textarea
 			</tr>
 			
 			<tr height="70">
-				<td width="500"><textarea rows="15" cols="51" name="cotent" placeholder="Message"style="background-color:transparent"></textarea></td>
+				<td width="500"><textarea rows="15" cols="51" name="content" placeholder="Message" style="background-color:transparent"></textarea></td>
 			</tr>
 			
 			<tr height="70">
