@@ -42,7 +42,7 @@ input::placeholder {
 }
 
 .btn{
-	font-family: font-family: 'Hepta Slab', serif;
+	font-family: 'Hepta Slab', serif;
 	font-weight:bold;
  	font-size:17px;
 	color:white;

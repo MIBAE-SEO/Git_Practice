@@ -9,7 +9,7 @@ footer{
     width: 1800px;
     height: 60px;
     background-color: #2d3a4b;
-    vertical-align: middel;
+    vertical-align:middle;
 }
 
 

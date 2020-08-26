@@ -12,14 +12,12 @@
 <table width="1800">
 		<tr height="200">
 			<td width="600" align="center">
-<%-- 			<a href="ShopListjsp?center=ShopInfo.jsp?no=<%=bean.getNo()%>"> --%>
-			<img src="./images/hat.jpg"></a></td>
+			<a href="ShopMain.jsp?center=HatList.jsp"><img src="./images/hat.jpg"></a></td>
 			<td width="600" align="center">
-<%-- 			<a href="ShopListjsp?center=ShopInfo.jsp?no=<%=bean.getNo()%>"> --%>
-			<img src="./images/bag.jpg"></a></td>
+			<a href="ShopMain.jsp?center=BagList.jsp"><img src="./images/bag.jpg"></a></td>
 			<td width="600" align="center">
-<%-- 			<a href="ShopListjsp?center=ShopInfo.jsp?no=<%=bean.getNo()%>"> --%>
-			<img src="./images/boots.jpg"></a></td>
+			<a href="ShopMain.jsp?center=BootsList.jsp"><img src="./images/boots.jpg"></a></td>
+			
 		</tr>
 	</table>
 	

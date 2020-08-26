@@ -68,6 +68,25 @@ color: white;
 margin: 0px auto;}
 
 
+
+button{
+	
+	font-family:'Encode Sans Semi Expanded', sans-serif;
+    background-color:#2d3a4b;
+    font-size: 15px;
+    color:white;
+    font-weight:light;
+    padding-top:4px;
+    padding-bottom:4px;
+    padding-right:10px;
+    padding-left:10px;
+    border:1px solid;
+}
+
+
+
+
+
 </style> 
 
 
@@ -107,10 +126,10 @@ margin: 0px auto;}
                 <%=id %>님 
                 <% 
                 if(id.equals("GUEST")){ %>
-                <button onclick="location.href='ShopMain.jsp?center=MemberLogin.jsp'">로그인</button>
+                <button  onclick="location.href='ShopMain.jsp?center=MemberLogin.jsp'">Login</button>
                 <%}else if(id!=null){
                 %>
-                 <button onclick="location.href='MemberLogout.jsp?logout=1'">로그아웃</button>
+                 <button onclick="location.href='MemberLogout.jsp?logout=1'">Logout</button>
                 <%} %> 
             </div>
  

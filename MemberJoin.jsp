@@ -38,7 +38,7 @@ input
 	border-right: medium none;
 	border-top: medium none;
 	font-size: 11pt;
-	font-color:white;
+	color:white;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -52,6 +52,7 @@ textarea
 	border-top: white 1px solid;
 	font-size: 11pt;
 	text-decoration: none;
+	color:white;
 	background-color:transparent;
 }
 
@@ -64,12 +65,14 @@ textarea::placeholder {
 }
 
 .btn{
+	display:block;
 	font-family: 'Noto Serif KR', serif;
  	font-size:17px;
 	color:white;
 	background-color:transparent;
 	border:1px;
- 	padding-bottom:15px;
+	margin: 0 auto;
+	padding:22px;
 }
 
 </style>
@@ -120,10 +123,9 @@ textarea::placeholder {
 		<textarea rows="9" cols="40" name="info" placeholder="Comment to fitzroy"></textarea>
 		</td>
 		</tr>
-		
-		<tr height="60">
-		<td align="center" colspan="5">
-		<input class="btn" type="submit" value="CREATE">
+		<tr>
+		<td width="100" colspan="3">
+		<input class="btn" type="submit" value=" → CREATE">
 		</td>
 		</tr>
 		</table>

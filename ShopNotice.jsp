@@ -3,16 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
 <head>
-<title>Center</title>
-<style>
-</style>
+<title>NOTICE</title>
 </head>
 <body>
 
-<img alt="" src="./images/listmain.jpg" width="1800">
-	
-			
-	
- 
+
+	<img src="./images/fitz.jpg">
 </body>
 </html>

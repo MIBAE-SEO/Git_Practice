@@ -8,7 +8,6 @@
 </head>
 <body>
 <%
-
 	session.removeAttribute("id");
 	response.sendRedirect("ShopMain.jsp");
 %>

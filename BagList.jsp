@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/Tr/html4/loose.dtd">
 <html>
 <head>
-<title>Boots List</title>
+<title>Bag List</title>
 <style>
 
 
@@ -41,34 +41,35 @@ p{
 </style>
 </head>
 <body>
+
 <center>
 <table>
 	<tr>
 	<td class="td01" width="300" height="130" colspan="5" >
-	<p class="p01"> Lisf Of HIKING BOOTS<br>
+	<p class="p01"> List Of BACKPACK<br>
 	<a class="a01" href="ShopMain.jsp?center=ShopList.jsp">Back To the LIST</a></p></td>
 	</tr>
 	<tr>
+	<td><img src="./images/bag1.jpg" 
+	onmouseover="this.src='./images/bag1_1.jpg';"
+	onmouseout="this.src='./images/bag1.jpg';"></td>
 	
-	<td><img src="./images/boots1.jpg" 
-	onmouseover="this.src='./images/boots1_1.jpg';"
-	onmouseout="this.src='./images/boots1.jpg';"></td>
+	<td><img src="./images/bag2.jpg" 
+	onmouseover="this.src='./images/bag2_1.jpg';"
+	onmouseout="this.src='./images/bag2.jpg';"></td>
 	
-	<td><img src="./images/boots2.jpg" 
-	onmouseover="this.src='./images/boots2_1.jpg';"
-	onmouseout="this.src='./images/boots2.jpg';"></td>
+	<td><img src="./images/bag3.jpg" 
+	onmouseover="this.src='./images/bag3_1.jpg';"
+	onmouseout="this.src='./images/bag3.jpg';"></td>
 	
-	<td><img src="./images/boots3.jpg" 
-	onmouseover="this.src='./images/boots3_1.jpg';"
-	onmouseout="this.src='./images/boots3.jpg';"></td>
+	<td><img src="./images/bag4.jpg" 
+	onmouseover="this.src='./images/bag4_1.jpg';"
+	onmouseout="this.src='./images/bag4.jpg';"></td>
 	
-	<td><img src="./images/boots4.jpg" 
-	onmouseover="this.src='./images/boots4_1.jpg';"
-	onmouseout="this.src='./images/boots4.jpg';"></td>
+	<td><img src="./images/bag5.jpg" 
+	onmouseover="this.src='./images/bag5_1.jpg';"
+	onmouseout="this.src='./images/bag5.jpg';"></td>
 	
-	<td><img src="./images/boots5.jpg" 
-	onmouseover="this.src='./images/boots5_1.jpg';"
-	onmouseout="this.src='./images/boots5.jpg';"></td>
 	
 	</tr>
 <tr>
